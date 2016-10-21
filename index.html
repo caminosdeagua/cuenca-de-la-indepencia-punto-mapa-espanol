@@ -10,11 +10,11 @@
 		
 		
 		<style>
-		  /* This CSS stylesheet dictaes the styles used in the leaflet
-  mapping project index.html in this repo, Independence-Watershed-
-  Point-Map-English. */ 
-
-  /* adds style the html body and map div objects */
+		/* This CSS stylesheet dictaes the styles used in the leaflet
+		mapping project index.html in this repo, Independence-Watershed-
+		Point-Map-English. */ 
+		
+		/* adds style the html body and map div objects */
 		html, body {width:100%; height:100%; padding:0; margin:0;}
 		#WaterMap {width:100%; height:100%; background:teal;}
 		
@@ -129,9 +129,9 @@
 			<div class="dropdown"> <!-- this next block of code creates the dropdown menu --> 
 				<button id="DDHeader" onclick="toggleDD();" class="dropbtn">Loading map...</button> <!-- what to do when dropdown button is pressed -->
 				<div id="mapSelector" class="dropdown-content">
-					<a onclick="loadAndPlotData(FLUORIDE);">Fluoride</a> <!-- what to do when a contaminant/map layer is selected -->
-					<a onclick="loadAndPlotData(ARSENIC);">Arsenic</a>        
-					<a onclick="loadAndPlotData(TOTAL_RISK);">Total Risk</a>
+					<a onclick="loadAndPlotData(FLUORIDE);">Fluoruro</a> <!-- what to do when a contaminant/map layer is selected -->
+					<a onclick="loadAndPlotData(ARSENIC);">Arsénico</a>        
+					<a onclick="loadAndPlotData(TOTAL_RISK);">Riesgo de Salud</a>
 				</div>
 			</div>
 			<!-- The next few chunks of code create the specific map legends. They're directly
@@ -274,7 +274,7 @@
 			var EPS = 0.0001; 						// This epsilon is the acceptable difference in lat or lng 										
 													//	between 2 points to classify them as occupying the same location.
 			var activeContaminant = -1; 			// A value that indicates the current contaminant being mapped								
-			var CONTAMINANTS = ["Fluoride", "Arsenic", "Total Risk"];
+			var CONTAMINANTS = ["Fluoruro", "Arsénico", "Riesgo de Salud"];
 													// Array with list of contaminants
 			var base;	 							// Store all info relevant to base points		
 			var dup_indices;						// An array of arrays of the data indices of duplicate points.
