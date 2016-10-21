@@ -117,6 +117,7 @@
 			height: 120px;
 			opacity: 1;
 		}
+		
 		/* CSS formatting for individual contaminant legend text */
 		div.cartodb-legend ul li {
 			font-size: 10px;
@@ -150,6 +151,29 @@
 				Alternately, you can copy and paste one of the legend div elements from below
 			and reformat it to suit the needs of the contaminant you want to display. -->
 			
+					<!-- The legend for arsenic -->
+			<div class='cartodb-legend density' id='arsenic_legend' style='display: none'>  
+				<ul>
+					<li class="min">
+						Arsénico (&mu;g/L): Límite Mexicano = 25; Límite de OMS = 10
+					</li>
+					<li class="graph leg" style="border-radius: 0; border:none">
+						<div class="colors">
+							<div class="quartile" style="background-color:#909090"></div>
+							<div class="quartile" style="background-color:#229A00"></div>
+							<div class="quartile" style="background-color:#FF9900"></div>
+							<div class="quartile" style="background-color:#F11810"></div>
+						</div>
+						<div class="colors" style="font-weight:normal; text-align: center">
+							<div class="quartile" style="padding-top: 5px" name="no_hay_datos"></div>
+							<div class="quartile" style="padding-top: 5px" ><b>0-10</b></div>
+							<div class="quartile" style="padding-top: 5px" ><b>10-25</b></div>
+							<div class="quartile" style="padding-top: 5px" ><b>25+</b></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			
 			<!-- The legend for fluoride -->
 			<div class='cartodb-legend density' id='fluoride_legend' style='display: none'>  
 				<ul>
@@ -165,7 +189,7 @@
 							<div class="quartile" style="background-color:#000000"></div>
 						</div>
 						<div class="colors" style="font-weight:normal; text-align: center">
-							<div class="quartile" style="padding-top: 5px" ><b>No hay<br>datos</b></div>
+							<div class="quartile" style="padding-top: 5px" name="no_hay_datos"></div>
 							<div class="quartile" style="padding-top: 5px" ><b>0-1.5</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>1.5-4</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>4-10</b></div>
@@ -175,48 +199,25 @@
 				</ul>
 			</div>
 			
-			<!-- The legend for arsenic -->
-			<div class='cartodb-legend density' id='arsenic_legend' style='display: none'>  
-				<ul>
-					<li class="min">
-						Arsénico (mg/L): Límite Mexicano = 25; Límite de OMS = 10
-					</li>
-					<li class="graph leg" style="border-radius: 0; border:none">
-						<div class="colors">
-							<div class="quartile" style="background-color:#909090"></div>
-							<div class="quartile" style="background-color:#229A00"></div>
-							<div class="quartile" style="background-color:#FF9900"></div>
-							<div class="quartile" style="background-color:#F11810"></div>
-						</div>
-						<div class="colors" style="font-weight:normal; text-align: center">
-							<div class="quartile" style="padding-top: 5px" ><b>No hay<br>datos</b></div>
-							<div class="quartile" style="padding-top: 5px" ><b>0-10</b></div>
-							<div class="quartile" style="padding-top: 5px" ><b>10-25</b></div>
-							<div class="quartile" style="padding-top: 5px" ><b>25+</b></div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			
 			<!-- The legend for the Total Risk map -->
 			<div class='cartodb-legend custom' id='risk_legend' style="display: none">	
-				<div class="legend-title">Water Risk Level</div>
+				<div class="legend-title">Nivel de peligro del agua</div>
 				<ul>
 					<li>
 						<div class="bullet" style="background:#229A00"></div>
-						Meets all standards
+						Cumple con todas las normas
 					</li>
 					<li>
 						<div class="bullet" style="background:#FFA300"></div>
-						Exceeds at least one standard - not safe for children
+						Supera uno o más normas - no es seguro para los niños
 					</li>
 					<li>
 						<div class="bullet" style="background:#F11810"></div>
-						Dangerous if consumed regularly
+						Peligroso si se lo toma regularmente
 					</li>
 					<li>
 						<div class="bullet" style="background:#000000"></div>
-						Potentially acutely toxic!
+						Potencialmente tóxico aguda!
 					</li>
 				</ul>
 			</div>
@@ -262,10 +263,10 @@
 				docs: "documents"
 			};
 			
-			var MONTHS = ["Jan", "Feb", "Mar", 		// Array of names of months for displaying
-						"Apr", "May", "Jun", 		//	the date in an accessible, clear format,
-						"Jul", "Aug", "Sep", 		// 	even for silly US people who choose to put 
-						"Oct", "Nov", "Dec"];		//	the month first. Ugh. 
+			var MONTHS = ["Enero", "Feb", "Marzo", 		// Array of names of months for displaying
+						"Abr", "Mayo", "Jun", 		//	the date in an accessible, clear format,
+						"Jul", "Agosto", "Sep", 		// 	even for silly US people who choose to put 
+						"Oct", "Nov", "Dic"];		//	the month first. Ugh. 
 			
 			var FLUORIDE = 0; 						// Initialize constants for each contaminant to use as 
 			var ARSENIC = 1;						// 	an index to call contaminant-specific information, like
@@ -358,6 +359,12 @@
 			var CARTO_ATTRIBUTION = 'Data hosting, legends by <a href="http://www.carto.com" target="_blank">CartoDB</a>';
 			
 			var NO_DATA_MSG = "No hay datos";
+			
+			for (var i=0; i<document.getElementsByName("no_hay_datos").length; i++) {
+				document.getElementsByName("no_hay_datos")[i].innerHTML = "<b>"+NO_DATA_MSG+"</b>";
+			}
+			
+			var PAST_DATA_TEXT = "<em>\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0DATOS PASADO</em><br>"
 			
 			
 			////////////////////////////////////////////////////////////////////////////////
@@ -775,7 +782,7 @@
 				var docPath = AllData.rows[i][DATA_NAMES.docs];
 				var docLink;
 				if(docPath) {
-					docLink = '<a href='+ docPath +' target="_blank">Complete test results</a>';
+					docLink = '<a href='+ docPath +' target="_blank">Resultados completos</a>';
 				} else {
 					docLink = ""
 				}
@@ -784,13 +791,13 @@
 					as = NO_DATA_MSG;
 				}
 				var pop = "<dl><h2>" + AllData.rows[i][DATA_NAMES.name] + "</h2>"	// This text will be displayed
-					+ "<b>Date</b>"												//	in the popup for this point.
+					+ "<b>Fecha</b>"												//	in the popup for this point.
 					+ "<dt>" + day + "-" + month + "-" + year + "</dd>"
 					+ "<br><br>"
-					+ "<b>Fluoride (mg/L)</b>"
+					+ "<b>Fluoruro (mg/L)</b>"
 					+ "<dt>" + AllData.rows[i][DATA_NAMES.f] + "</dd>"
 					+ "<br><br>"
-					+ "<b>Arsenic (ug/L)</b>"
+					+ "<b>Arsénico (&mu;g/L)</b>"
 					+ "<dt>" + as + "</dd>"
 					+ "<br><br>"
 					+ docLink
@@ -851,7 +858,7 @@
 				} else if (type == "community") {
 					return "\xa0"+String(AllData.rows[i][DATA_NAMES.name]);
 				} else if (type == 'hist') {
-					return "<em>\xa0\xa0\xa0\xa0\xa0\xa0\xa0HISTORICAL DATA</em><br>";
+					return PAST_DATA_TEXT;
 				};
 			}
 			
