@@ -117,6 +117,15 @@
 			height: 120px;
 			opacity: 1;
 		}
+		/* CSS formatting for individual contaminant legend text */
+		div.cartodb-legend ul li {
+			font-size: 10px;
+			color: #666;
+			font-weight: 700;
+			font-family: Helvetica,Arial;
+			text-transform: none;
+			line-height: normal;
+		}
 
 		</style>
 	</head>
@@ -131,7 +140,7 @@
 				<div id="mapSelector" class="dropdown-content">
 					<a onclick="loadAndPlotData(FLUORIDE);">Fluoruro</a> <!-- what to do when a contaminant/map layer is selected -->
 					<a onclick="loadAndPlotData(ARSENIC);">Arsénico</a>        
-					<a onclick="loadAndPlotData(TOTAL_RISK);">Riesgo de Salud</a>
+					<a onclick="loadAndPlotData(TOTAL_RISK);">Nivel de peligro</a>
 				</div>
 			</div>
 			<!-- The next few chunks of code create the specific map legends. They're directly
@@ -145,7 +154,7 @@
 			<div class='cartodb-legend density' id='fluoride_legend' style='display: none'>  
 				<ul>
 					<li class="min">
-						Fluoride (ppm): Mexican Limit = 1.5; WHO Limit = 1.5
+						Fluoruro (mg/L): Límite Mexicano = 1.5; Límite de OMS = 1.5
 					</li>
 					<li class="graph leg" style="border-radius: 0; border:none">
 						<div class="colors">
@@ -156,7 +165,7 @@
 							<div class="quartile" style="background-color:#000000"></div>
 						</div>
 						<div class="colors" style="font-weight:normal; text-align: center">
-							<div class="quartile" style="padding-top: 5px" ><b>No data</b></div>
+							<div class="quartile" style="padding-top: 5px" ><b>No hay<br>datos</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>0-1.5</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>1.5-4</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>4-10</b></div>
@@ -170,7 +179,7 @@
 			<div class='cartodb-legend density' id='arsenic_legend' style='display: none'>  
 				<ul>
 					<li class="min">
-						Arsenic (ppb): Mexican Limit = 25; WHO Limit = 10
+						Arsénico (mg/L): Límite Mexicano = 25; Límite de OMS = 10
 					</li>
 					<li class="graph leg" style="border-radius: 0; border:none">
 						<div class="colors">
@@ -180,7 +189,7 @@
 							<div class="quartile" style="background-color:#F11810"></div>
 						</div>
 						<div class="colors" style="font-weight:normal; text-align: center">
-							<div class="quartile" style="padding-top: 5px" ><b>No data</b></div>
+							<div class="quartile" style="padding-top: 5px" ><b>No hay<br>datos</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>0-10</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>10-25</b></div>
 							<div class="quartile" style="padding-top: 5px" ><b>25+</b></div>
@@ -274,7 +283,7 @@
 			var EPS = 0.0001; 						// This epsilon is the acceptable difference in lat or lng 										
 													//	between 2 points to classify them as occupying the same location.
 			var activeContaminant = -1; 			// A value that indicates the current contaminant being mapped								
-			var CONTAMINANTS = ["Fluoruro", "Arsénico", "Riesgo de Salud"];
+			var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro"];
 													// Array with list of contaminants
 			var base;	 							// Store all info relevant to base points		
 			var dup_indices;						// An array of arrays of the data indices of duplicate points.
@@ -348,7 +357,7 @@
 			
 			var CARTO_ATTRIBUTION = 'Data hosting, legends by <a href="http://www.carto.com" target="_blank">CartoDB</a>';
 			
-			var NO_DATA_MSG = "No data";
+			var NO_DATA_MSG = "No hay datos";
 			
 			
 			////////////////////////////////////////////////////////////////////////////////
