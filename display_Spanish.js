@@ -31,3 +31,5 @@ var RISK_LABELS = ["\xa0\xa0\xa0Cumple\xa0con\xa0todas\xa0las\xa0normas",
 var F_TITLE = "Fluoruro (mg/L): Límite Mexicano = 1.5; Límite de OMS = 1.5";
 var AS_TITLE = "Arsénico (&mu;g/L): Límite Mexicano = 25; Límite de OMS = 10";
 var RISK_TITLE = "Nivel de peligro del agua";
+
+var OLD_DATA_MSG = "<em>\xa0\xa0\xa0\xa0\xa0\xa0\xa0DATOS PASADOS</em><br>";
