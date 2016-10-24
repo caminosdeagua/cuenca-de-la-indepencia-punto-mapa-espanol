@@ -17,7 +17,7 @@ var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro"];
 var DATE = "Fecha";
 var SEE_MORE = "Resultados completos";						// This message gets displayed as a link to show 
 															//	more info about the given datapoint
-var CARTO_ATTRIBUTION = 'Data hosting, legends by <a href="http://www.carto.com">CartoDB</a>';
+var CARTO_ATTRIBUTION = 'Data hosting: <a href="http://www.dropbox.com">Dropbox</a> legends by <a href="http://www.carto.com">CartoDB</a>';
 
 var NO_DATA_MSG = "No hay datos";
 
