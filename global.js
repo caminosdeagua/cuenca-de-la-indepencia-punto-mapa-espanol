@@ -1,9 +1,8 @@
 
-
+var USER = 'cameron-catis';				// User for carto SQL querries 
 var map;								// initialize the variable to hold the map
 
-var DATA_URL = "https://dl.dropboxusercontent.com/s/ywihdduzt1estgh/ask_test_dataset.JSON"
-											// ^--- The URL where the data lives in JSON form.
+var DATASHEET_NAME = 'ask_test_dataset'; 	// Datasheet name from carto.com for retrieving data
 var DATA_NAMES = {							// And store the titles of the columns 
 	date: "date",							//	(get from carto.com once you import the dataset.)
 	name: "community_name",	
