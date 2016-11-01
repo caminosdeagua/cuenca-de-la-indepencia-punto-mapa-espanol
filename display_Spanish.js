@@ -10,7 +10,7 @@ var MONTHS = ["Enero", "Feb", "Marzo", 		// Array of names of months for display
 			"Jul", "Agosto", "Sep", 		// 	even for silly US people who choose to put 
 			"Oct", "Nov", "Dic"];	
 
-var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro"]; 	
+var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro total"]; 	
 											// Array with list of contaminants in same order
 											// 	such that CONTAMINANTS[FLUORIDE] = "Fluoride"
 											//	(since FLUORIDE == 0 above...)
@@ -24,13 +24,13 @@ var NO_DATA_MSG = "No hay datos";
 var F_LABELS = ["0-1.5", "1.5-4", "4-10", "10+"];
 var AS_LABELS = ["0-10","10-25","25+"];
 var RISK_LABELS = ["\xa0\xa0\xa0Cumple\xa0con\xa0todas\xa0las\xa0normas",
-"\xa0\xa0\xa0Supera\xa0una\xa0o\xa0más\xa0normas\xa0-\xa0no\xa0es\xa0seguro\xa0para\xa0los\xa0niños",
-"\xa0\xa0\xa0Peligroso\xa0si\xa0se\xa0lo\xa0toma\xa0regularmente",
-"\xa0\xa0\xa0Aguda:\xa0potencialmente\xa0tóxica!"];
+"\xa0\xa0\xa0Sobrepasa\xa0una\xa0o\xa0más\xa0normas\xa0-\xa0no\xa0es\xa0seguro\xa0para\xa0los\xa0niños",
+"\xa0\xa0\xa0Peligroso\xa0si\xa0se\xa0toma\xa0regularmente",
+"\xa0\xa0\xa0Potencialmente\xa0tóxica!"];
 
 
-var F_TITLE = "Flúor (mg/L): Límite Mexicano = 1.5; Límite de OMS = 1.5";
-var AS_TITLE = "Arsénico (&mu;g/L): Límite Mexicano = 25; Límite de OMS = 10";
-var RISK_TITLE = "Nivel de peligro del agua";
+var F_TITLE = "Fluoruro (mg/L): Límite de OMS = 1.5; Límite Mexicano = 1.5";
+var AS_TITLE = "Arsénico (&mu;g/L): Límite de OMS = 10; Límite Mexicano = 25"; 
+var RISK_TITLE = "Nivel de peligro total";
 
-var OLD_DATA_MSG = "<em>\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0DATOS PASADOS</em><br>";
+var OLD_DATA_MSG = "<em>\xa0\xa0\xa0\xa0\xa0\xa0DATOS ANTERIORES</em><br>";

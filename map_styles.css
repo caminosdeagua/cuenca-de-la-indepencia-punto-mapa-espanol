@@ -124,5 +124,6 @@ img.caminos_logo {
 }
 /* Adjust the width of the legend for different languages...*/
 div.cartodb-legend {
-	width: 340px;		
+	width: 315px;	
 }
+
