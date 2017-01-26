@@ -1,9 +1,9 @@
 
-
 var map;								// initialize the variable to hold the map
+										// ^--- The URL where the data lives in JSON form.
+var DATA_URL= "https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/water_quality_monitoring_dataset.JSON";
 
-var DATA_URL = "https://dl.dropboxusercontent.com/s/eb80ajfv59csvo3/ask_test_dataset.JSON";
-											// ^--- The URL where the data lives in JSON form.
+
 var DATA_NAMES = {							// And store the titles of the columns 
 	date: "date",							//	(get from carto.com once you import the dataset.)
 	name: "community_name",	
@@ -62,20 +62,19 @@ var MAX_LABEL_LINE_CHARS = 20;			// the max number of characters on a line in th
 var STAMEN_MAP_TYPE = "terrain";		// Set which type of stamen map we want as a base layer.
 										// 	options include: "terrain", "watercolor", and "toner"	
 										
-var X_URL = "https://dl.dropboxusercontent.com/s/n3wh4pazt501ckn/xButton_blue.png";		// URL for x-button used to close the spider
+var X_URL = "img/xButton_blue.png";		// URL for x-button used to close the spider
 									
-var BASE_URLS = ["https://dl.dropboxusercontent.com/s/4a9kueof9sgf0hq/greyPoint.png",				// Store array of all images to use as marker icons. 
-	'https://dl.dropboxusercontent.com/s/tfpxfn55cl8q83j/greenPoint.png',	// 	[0]: no data, [1]: green, [2]: orange, [3]: red, [4] black
-	'https://dl.dropboxusercontent.com/s/g1ujd6fvgv67ae4/yellowPoint.png',
-	'https://dl.dropboxusercontent.com/s/ijl44tp7uuwzis6/redPoint.png',
-	'https://dl.dropboxusercontent.com/s/2khvqz8eez00ph2/blackPoint.png'
-];
-var SPIDER_URLS = ["https://dl.dropboxusercontent.com/s/ckhdv1fv116xcbe/greySpider.png",			// URLs for points to be spidered
-	'https://dl.dropboxusercontent.com/s/uuaqbad4bce8m24/greenSpider.png',
-	"https://dl.dropboxusercontent.com/s/vovd77flyqt93fb/yellowSpider.png",
-	"https://dl.dropboxusercontent.com/s/lrpnedopnejjpxo/redSpider.png",
-	"https://dl.dropboxusercontent.com/s/bj4u49t6xfu2df4/blackSpider.png"
-];
+var BASE_URLS = ["img/greyPoint.png",
+				"img/greenPoint.png",
+				"img/yellowPoint.png",
+				"img/redPoint.png",
+				"img/blackPoint.png"];
+
+var SPIDER_URLS = ["img/greySpider.png",
+				"img/greenSpider.png",
+				"img/yellowSpider.png",
+				"img/redSpider.png",
+				"img/blackSpider.png"];
 
 var SMALL_ICON_SIZE = [16,16]; 			// The pixel x and y that the final marker icon image is scaled to. 
 var LARGE_ICON_SIZE = [24,24];			// A larger marker for the base of the spider 
@@ -83,4 +82,12 @@ var BASE_ICONS = [0,0,0,0];				// Initialize an array to hold all the icons, so 
 var SPIDER_ICONS = [0,0,0,0];			//	only need to be grabbed once. 
 var BASE_SPIDER_ICONS = [0,0,0,0];
 
+///////https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/xButton_blue.png
+//
+//img/greyPoint.png
+//img/greenPoint.png
+//img/yellowPoint.png
+//img/redPoint.png
+//img/blackPoint.png
+//img
 
