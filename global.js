@@ -62,7 +62,7 @@ var MAX_LABEL_LINE_CHARS = 20;			// the max number of characters on a line in th
 var STAMEN_MAP_TYPE = "terrain";		// Set which type of stamen map we want as a base layer.
 										// 	options include: "terrain", "watercolor", and "toner"	
 										
-var X_URL = "img/xButton_blue.png";		// URL for x-button used to close the spider
+var X_URL = "https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/img/xButton_blue.png";		// URL for x-button used to close the spider
 									
 var BASE_URLS = ["https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/img/greyPoint.png",
 				"https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/img/greenPoint.png",
