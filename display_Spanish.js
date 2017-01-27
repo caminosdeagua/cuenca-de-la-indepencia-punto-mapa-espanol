@@ -4,7 +4,7 @@
 ////	any point on the map. It's stored in simple strings for ease of 	////
 ////	translation. Enjoy =)												////
 ////////////////////////////////////////////////////////////////////////////////
-
+var TITLE = "Cuenca de la Indepencia Mapa de Nivel de Peligro del Agua | Caminos de Agua"; 
 var MONTHS = ["Enero", "Feb", "Marzo", 		// Array of names of months for displaying
 			"Abr", "Mayo", "Jun", 			//	the date in an accessible, clear format,
 			"Jul", "Agosto", "Sep", 		// 	even for silly US people who choose to put 
