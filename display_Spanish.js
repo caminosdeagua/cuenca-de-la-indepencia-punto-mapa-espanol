@@ -21,10 +21,10 @@ var CARTO_ATTRIBUTION = 'Data hosting: <a href="http://www.dropbox.com">Dropbox<
 
 var NO_DATA_MSG = "No hay datos";
 
-var F_LABELS = ["0-1.5", "1.5-4", "4-10", "10+"];
+var F_LABELS = ["0-1.5", "1.5-3", "3-10", "10+"];
 var AS_LABELS = ["0-10","10-25","25+"];
 var RISK_LABELS = ["\xa0\xa0\xa0Cumple\xa0con\xa0todas\xa0las\xa0normas",
-"\xa0\xa0\xa0Sobrepasa\xa0una\xa0o\xa0más\xa0normas\xa0-\xa0no\xa0es\xa0seguro\xa0para\xa0los\xa0niños",
+"\xa0\xa0\xa0No\xa0es\xa0seguro\xa0para\xa0los\xa0niños\xa0menores\xa0de\xa0siete\xa0años",
 "\xa0\xa0\xa0Peligroso\xa0si\xa0se\xa0toma\xa0regularmente",
 "\xa0\xa0\xa0Potencialmente\xa0tóxica!"];
 
