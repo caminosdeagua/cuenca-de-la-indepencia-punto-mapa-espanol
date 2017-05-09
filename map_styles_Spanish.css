@@ -76,7 +76,7 @@ allows the user to select the relevant contaminant. */
 }
 
 .dropdown {
-	position: relative;
+	position: absolute;
 	display: inline-block;
 	top: 14px;
 	left: 50px;
@@ -126,3 +126,40 @@ div.cartodb-legend {
 	width: 315px;	
 }
 
+#how_to_read {
+	display: inline-block;
+	z-index: 30000;
+	position: absolute;
+	right: 15px;
+	top:15px;
+	height: 95%;
+	box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+	border-radius: 5%
+	
+}
+
+.toggle_button {
+	display: inline-block;
+	z-index: 30001;
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}
+
+.toggle_button:hover {
+	cursor: pointer;
+}
+
+
+#x_button {
+	height: 4%;
+}
+
+#help_button {
+	height: 30px;
+	box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3); 
+	-moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+	-o-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+	border-radius: 100px;
+}

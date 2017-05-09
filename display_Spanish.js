@@ -15,7 +15,7 @@ var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro total"];
 											// 	such that CONTAMINANTS[FLUORIDE] = "Fluoride"
 											//	(since FLUORIDE == 0 above...)
 var DATE = "Fecha";
-var TEST_ORG = "";
+var TEST_ORG = "Institución";
 var SEE_MORE = "Resultados completos";						// This message gets displayed as a link to show 
 															//	more info about the given datapoint
 var CARTO_ATTRIBUTION = 'Data hosting: <a href="http://www.dropbox.com">Dropbox</a> legends by <a href="http://www.carto.com">CartoDB</a>';
@@ -29,9 +29,10 @@ var RISK_LABELS = ["\xa0\xa0\xa0Cumple\xa0con\xa0todas\xa0las\xa0normas",
 "\xa0\xa0\xa0Peligroso\xa0si\xa0se\xa0toma\xa0regularmente",
 "\xa0\xa0\xa0Potencialmente\xa0tóxica!"];
 
-
 var F_TITLE = "Fluoruro (mg/L): Límite de OMS = 1.5; Límite Mexicano = 1.5";
 var AS_TITLE = "Arsénico (&mu;g/L): Límite de OMS = 10; Límite Mexicano = 25"; 
 var RISK_TITLE = "<big>Nivel de peligro total</big><br>Limites de OMS: Fluoruro = 1.5 mg/L; Arsénico = 10 &mu;g/L";
 
 var OLD_DATA_MSG = "<em>\xa0\xa0\xa0\xa0\xa0\xa0DATOS ANTERIORES</em><br>";
+
+var LEGEND_URL = "https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/img/howToRead_ENG.png";
