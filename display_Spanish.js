@@ -5,9 +5,9 @@
 ////	translation. Enjoy =)												////
 ////////////////////////////////////////////////////////////////////////////////
 var TITLE = "Cuenca de la Indepencia Mapa de Nivel de Peligro del Agua | Caminos de Agua"; 
-var MONTHS = ["Enero", "Feb", "Marzo", 		// Array of names of months for displaying
-			"Abr", "Mayo", "Jun", 			//	the date in an accessible, clear format,
-			"Jul", "Agosto", "Sep", 		// 	even for silly US people who choose to put 
+var MONTHS = ["Ene", "Feb", "Mar", 		// Array of names of months for displaying
+			"Abr", "May", "Jun", 			//	the date in an accessible, clear format,
+			"Jul", "Ago", "Sep", 		// 	even for silly US people who choose to put 
 			"Oct", "Nov", "Dic"];	
 
 var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro total"]; 	
@@ -15,6 +15,7 @@ var CONTAMINANTS = ["Fluoruro", "Arsénico", "Nivel de peligro total"];
 											// 	such that CONTAMINANTS[FLUORIDE] = "Fluoride"
 											//	(since FLUORIDE == 0 above...)
 var DATE = "Fecha";
+var TEST_ORG = "";
 var SEE_MORE = "Resultados completos";						// This message gets displayed as a link to show 
 															//	more info about the given datapoint
 var CARTO_ATTRIBUTION = 'Data hosting: <a href="http://www.dropbox.com">Dropbox</a> legends by <a href="http://www.carto.com">CartoDB</a>';
