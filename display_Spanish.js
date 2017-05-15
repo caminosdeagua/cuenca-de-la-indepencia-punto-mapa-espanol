@@ -35,4 +35,5 @@ var RISK_TITLE = "<big>Nivel de peligro total</big><br>Limites de OMS: Fluoruro 
 
 var OLD_DATA_MSG = "<em>\xa0\xa0\xa0\xa0\xa0\xa0DATOS ANTERIORES</em><br>";
 
-var LEGEND_URL = "https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/img/howToRead_ENG.png";
+var LEGEND_URL = "https://caminosdeagua.github.io/cuenca-de-la-independencia-punto-mapa-espanol/img/howToRead_ESP.png";
+var ARROW_URL = "https://caminosdeagua.github.io/Independence-Watershed-Point-Map-English/img/closeArrow.png";

@@ -163,3 +163,12 @@ div.cartodb-legend {
 	-o-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
 	border-radius: 100px;
 }
+
+#close_arrow {
+	display: inline-block;
+	z-index: 30001;
+	position: absolute;
+	right: 38px;
+	top: 1%;
+	height: 10%;
+}
