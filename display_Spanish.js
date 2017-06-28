@@ -28,6 +28,7 @@ var RISK_LABELS = ["\xa0\xa0\xa0Cumple\xa0con\xa0todas\xa0las\xa0normas",
 "\xa0\xa0\xa0No\xa0es\xa0seguro\xa0para\xa0los\xa0niños\xa0menores\xa0de\xa0siete\xa0años",
 "\xa0\xa0\xa0Peligroso\xa0si\xa0se\xa0toma\xa0regularmente",
 "\xa0\xa0\xa0Potencialmente\xa0tóxica!"];
+var LABELS = [F_LABELS, AS_LABELS];
 
 var F_TITLE = "Fluoruro (mg/L): Límite de OMS = 1.5; Límite Mexicano = 1.5";
 var AS_TITLE = "Arsénico (&mu;g/L): Límite de OMS = 10; Límite Mexicano = 25"; 
@@ -37,3 +38,15 @@ var OLD_DATA_MSG = "<em>\xa0\xa0\xa0\xa0\xa0\xa0DATOS ANTERIORES</em><br>";
 
 var LEGEND_URL = "img/howToRead_ESP.png";	//WILL EVENTUALLY BE: "https://caminosdeagua.github.io/cuenca-de-la-independencia-punto-mapa-espanol/img/howToRead_ESP.png";
 var ARROW_URL = "img/closeArrowESP.png";
+
+var PRINTING_SUMMARY_MSG = "\n-----***-----***-----***-----***-----***-----***-----\nGreat job, you hacker you! Enjoy the summary...\n-----***-----***-----***-----***-----***-----***-----\n "
+var TOTAL_SITES_MSG = "Distinct sites (wells, taps, pipa, etc.) sampled at least once:";
+var TOTAL_WELLS_MSG = "Distinct wells sampled at least once:";
+var TOTAL_POINTS_MSG = "Total number of datapoints collected (includes duplicates for single site):";
+var TOTAL_ORGS_MSG = "Number of testing organizations:";
+var ORG_NAMES_MSG = "All testing organizations:";
+var CONTAMINANT_HEADER_MSG = "----------------";	
+var CONTAM_LIMIT_MSG = "Number of locations whose most recently sampled point is";	
+var TOTAL_ABOVE_MSG = "All sites above the WHO limit:";
+var TOTAL_ABOVE_BOTH_MSG = "All sites above the WHO limit for both As & F:";
+var BOTH_MSG = "Arsenic & Fluoride";

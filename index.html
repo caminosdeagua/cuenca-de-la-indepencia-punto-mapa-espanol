@@ -80,7 +80,7 @@
 			</div>
 			
 			<!-- The legend for arsenic -->
-			<div class='cartodb-legend density' id='arsenic_legend' style='display: none'>  
+			<div class='cartodb-legend density' id='arsenic_legend' style='display: none;'>  
 				<ul>
 					<li class="min" id="as_title" style="text-transform:none" ></li>
 					<li class="graph leg" style="border-radius: 0; border:none">
@@ -105,7 +105,7 @@
 				<div class="legend-title", id="risk_title" style="text-transform:none"></div>
 				<ul>
 					<li>
-						<div class="bullet" style="background:#229A00; text-transform:none" name="risk"></div> 
+						<div class="bullet" style="background:#229A00; text-transform:none" name="risk" onclick="easterEggGo();"></div> 
 					</li>
 					<li>
 						<div class="bullet" style="background:#FFA300; text-transform:none" name="risk"></div>
@@ -275,7 +275,9 @@
 				base = { 							// reinitialize the global variable base.
 					Markers: [],
 					Popups: [],
-					Bins: []
+					Bins: [],
+					Wells: [],
+					Index: []
 				};
 				if (spiderOpen) {					// if there's a spider open, 
 					closeSpider(); 					//	close the spider,
@@ -345,7 +347,7 @@
 								plotMarker("base", data, contaminantToShow, i, border, dup_indices);
 							} else if (presentIn2dArray(dup_indices, i)[1][1] == 0) {	// plot the base data with historical data
 								var row = presentIn2dArray(dup_indices, i)[1][0];		// get row of dup_indices that has all the duplicate indices for the current point
-								var baseBin = getBin(i, BINS[contaminantToShow]);	// define the base bin as the bin of the base point
+								var baseBin = getBin(i, BINS[contaminantToShow]);		// define the base bin as the bin of the base point
 								var maxBin = 0;											// init maxBin to hold the maximum bin of the spider
 								var newBin;												// init a placeholder called newBin
 								for (var spideringPts = 0; spideringPts<dup_indices[row].length; spideringPts++) {	// loop through all the duplicate points`
@@ -385,12 +387,7 @@
 						iconToUse = BASE_ICONS[COLORS[activeContaminant][base.Bins[base.Bins.length-1]]];	// grab the normal icon
 					} else {																				// if there should be a border
 						iconToUse = HISTORICAL_BASE_ICONS[COLORS[activeContaminant][border[1]]][COLORS[activeContaminant][border[2]]];	// grab the bordered icon
-					
 					}
-					
-					
-					
-					
 					var latLng = L.latLng([data[i][DATA_NAMES.lat], data[i][DATA_NAMES.lng]]); // Grab the latLng of the point
 					base.Markers.push( 										// Save the appropriate marker
 						L.marker(latLng, {
@@ -427,6 +424,24 @@
 						noHide: false,										// attach labels to all the base points 
 						className: "ourLabel"								//	that activate during mouseover
 					});
+
+					if(data[data_index][DATA_NAMES.site_type].includes("Well")) {	// if the site is a well
+						base.Wells.push(true);										// 	indicate it with a true,
+					} else {														//	in base.Wells, otherwise,
+						base.Wells.push(false);										//	indicate it with a false.
+					}
+					
+					
+					
+					var orgsArray = data[data_index][DATA_NAMES.test_org].split("; ");	// THIS REQUIRES THAT TESTING ORGANIZATIONS ARE
+					for (var k=0; k<orgsArray.length; k++) {							//	SEPARATED IN THE DATABASE BY A SEMI-COLON AND A SPACE
+						if(ORGS.indexOf(orgsArray[k]) == NOT_PRESENT) {					// 	FOR EXAMPLE: "Caminos de Agua; Texas A&M University"
+							ORGS.push(orgsArray[k])
+						}
+					}
+					
+					base.Index.push(data_index);										// store the index in AllData for later access
+					
 					var popupText = getBasePopup(i);// Grab the text for the popup at data index i
 					base.Popups.push(L.popup({		// Define the popup for each marker
 						offset: POPUP_OFFSET})
@@ -449,9 +464,13 @@
 			//// 	number, we'll figure out in which bin the value falls. If bins 		////
 			//// 	begins with a non-number, we need to do something more complex. 	////
 			//// 	Either way, getBin() returns the correct bin in which value falls.  ////
+			////																		////
+			////	Returns 0 to mean no data, 1 means the safest bin, with upwards		////
+			////	progression by +1 from there.										////
 			////////////////////////////////////////////////////////////////////////////////
 			
 			function getBin(index, bins) {
+				
 				var pureBins = Array.from(bins);				// store a copy of bins into pureBins
 				
 				if (bins[0]=="combined") {						// if the bins are combined
@@ -476,22 +495,7 @@
 							if (arsenic == -1 && (AllData[dup_indices[row][i]][DATA_NAMES.as] != "" && AllData[dup_indices[row][i]][DATA_NAMES.as] != null)) {
 								arsenic = AllData[dup_indices[row][i]][DATA_NAMES.as];
 							}
-							
-							
-						
-							
-							
-							
-							
-						}
-							
-						
-						
-						
-						
-						
-						
-						
+						}	
 					} else {
 						fluoride = AllData[index][DATA_NAMES.f];
 						arsenic = AllData[index][DATA_NAMES.as];
@@ -975,7 +979,89 @@
 				document.getElementById('WaterMap').style.cursor='grab';
 			}
 	
+			///////////////////////////////////////////////////////////////////
+			////			function easterEggGo()			 				////
+			//// 															////
+			////	Prints a bunch of information to the console. This is 	////
+			////	primarily designed for staff to use to get useful		////
+			////	statistics for reports, publications, quotes for media	////
+			////	inquiries, etc.											////
+			////////////////////////////////////////////////////////////////////
 			
+			
+			function easterEggGo() {
+				console.log(PRINTING_SUMMARY_MSG)
+				//////// 	total sites sampled					/////////
+				
+				console.log(TOTAL_SITES_MSG+"\xa0"+base.Markers.length)		// length of base.Markers = number of base points
+				
+				////////	total wells	sampled					/////////
+				
+				wellCounter = 0;											// base.Wells is all the base points and reads 1
+				for(var i=0; i<base.Wells.length; i++) {					//	for a well, and 0 for anything else. So adding
+					wellCounter = wellCounter+base.Wells[i];				// 	them up = # of distinct wells sampled
+				}
+				console.log(TOTAL_WELLS_MSG+"\xa0"+wellCounter);
+				
+				////////	total number datapoints taken		/////////
+				
+				var dups = 0;												// get the total number of duplicates (indluding base points)
+				for(var i=0; i<dup_indices.length; i++) {					
+					dups = dups + dup_indices[i].length;
+				}															// subtract dup_indices.length, the number of base points with duplicates to avoid double counting
+				var totalPoints = dups - dup_indices.length + base.Markers.length	// 	then add all the base points to get total number of samples incorporated in map. 
+				console.log(TOTAL_POINTS_MSG+"\xa0"+totalPoints)				
+				
+				////////	number of partners	/////////
+				console.log(TOTAL_ORGS_MSG+"\xa0"+ORGS.length);
+				
+				////////	names of partners	///////// 	
+				console.log(ORG_NAMES_MSG+"\xa0"+ORGS)
+				
+				////////	number of sites currently above F-As-Both		/////////
+				var bothBins = Array.apply(null, Array(base.Index.length)).map(Number.prototype.valueOf,0);
+				var binCounters = Array.apply(null, Array(CONTAMINANTS.length-1)).map(Number.prototype.valueOf, 0);
+				var storedActiveContaminant = activeContaminant;				// store the active contaminant b/c getBins reads it
+				for (var pt=0; pt<base.Index.length; pt++) {					// loop through all the points
+					bothBins[pt] = Array.apply(null, Array(CONTAMINANTS.length-1)).map(Number.prototype.valueOf,0);
+					for (var contam=0; contam<CONTAMINANTS.length-1; contam++) {	// loop through all the contaminant categories, excluding the last one (assumed to be total risk);
+						activeContaminant = contam;									// set the active contaminant to whatever contaminant you're getting the bins for (sorry this is a terrible work-around =/  )
+						bothBins[pt][contam]=getBin(base.Index[pt], BINS[contam])	// store the value of the bin into bothBins array
+						if (bothBins[pt][contam] > 1) {								// if 
+							binCounters[contam] = binCounters[contam] + 1;
+						}
+					}
+					activeContaminant = storedActiveContaminant						// reset the active contaminant
+					
+				}
+				
+				////////	display results for F/As/contamination data...	////////
+				for (var i=0; i<CONTAMINANTS.length-1; i++) {
+					console.log("\n"+CONTAMINANT_HEADER_MSG+"\xa0"+CONTAMINANTS[i]+"\xa0"+CONTAMINANT_HEADER_MSG);
+					for (var j=0; j<BINS[i].length; j++) {
+						var binstances = 0;					// <--- this is a bad pun variable name for "bin instances"
+						for (var k=0; k<bothBins.length; k++) {
+							if (bothBins[k][i] == j+2) {
+								binstances++;
+							}
+						
+						
+						}
+						console.log(CONTAM_LIMIT_MSG+"\xa0"+LABELS[i][j+1]+": "+binstances);		// print each bin value for each contam
+					}
+					console.log(TOTAL_ABOVE_MSG+"\xa0"+binCounters[i]);								// print total # > WHO limit for each contam
+				}
+				var bothAboveCounter = 0;
+				for (var i=0; i<bothBins.length; i++) {
+					if (bothBins[i][0]>1 && bothBins[i][1]>1) {
+						bothAboveCounter++;
+					}
+				}
+				console.log("\n"+CONTAMINANT_HEADER_MSG+"\xa0"+BOTH_MSG+"\xa0"+CONTAMINANT_HEADER_MSG);
+				console.log(TOTAL_ABOVE_BOTH_MSG+"\xa0"+bothAboveCounter)
+				
+				
+			}
 		</script>
 		
 	</body>
